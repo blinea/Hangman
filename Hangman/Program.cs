@@ -10,6 +10,10 @@ namespace Hangman
 
         static void Main(string[] args)
         {
+            Console.WriteLine("*****************************************");
+            Console.WriteLine("********* The Hangman Game !!! **********");
+            Console.WriteLine("*****************************************");
+
             Random random = new Random((int)DateTime.Now.Ticks);
 
             string[] wordBank = { "Satan", "Belial", "Lucifer", "Lilith", "Belphegor", "Diablo", "Akuma" };
@@ -24,7 +28,7 @@ namespace Hangman
             List<char> correctGuesses = new List<char>();
             List<char> incorrectGuesses = new List<char>();
 
-            int lives = 5;
+            int lives = 5, points = 0;
             bool won = false;
             int lettersRevealed = 0;
 
@@ -59,6 +63,7 @@ namespace Hangman
                         {
                             displayToPlayer[i] = wordToGuess[i];
                             lettersRevealed++;
+                            points = points + 5;
                         }
                     }
 
@@ -71,9 +76,14 @@ namespace Hangman
 
                     Console.WriteLine("Nope, there's no '{0}' in it!", guess);
                     lives--;
+                    points = points - 10;
                 }
-
-                Console.WriteLine(displayToPlayer.ToString());
+                Console.WriteLine("*****************************************");
+                Console.WriteLine("");
+                Console.WriteLine("Current Word: " + displayToPlayer.ToString());
+                Console.WriteLine("Lives : " + lives);
+                Console.WriteLine("Points : " + points);
+                Console.WriteLine("");
             }
 
             if (won)
