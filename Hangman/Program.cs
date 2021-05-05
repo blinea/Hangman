@@ -4,21 +4,23 @@ using System.Text;
 
 namespace Hangman
 {
-    class Program
+    internal class Program
     {
-
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("*****************************************");
-            Console.WriteLine("********* The Hangman Game !!! **********");
-            Console.WriteLine("*****************************************");
+            Console.WriteLine(".:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
+            Console.WriteLine(".:*~*:._.:*~*:.    The Hangman Game !!!        _.:*~*:._.:*~*:.");
+            Console.WriteLine(".:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
+            Console.WriteLine("");
+            Console.WriteLine("    Decode the hidden word to save Shrek from Death !!!!!!");
 
-            Random random = new Random((int)DateTime.Now.Ticks);
+            Random random = new Random();
 
-            string[] wordBank = { "Satan", "Belial", "Lucifer", "Lilith", "Belphegor", "Diablo", "Akuma" };
+            string[] words = { "Vodka", "Whiskey", "Tequila", "Brandy", "Vermouth", "Gin",
+                                    "Rum", "Fernet", "Cider", "Beer", "Wine", "Jaggermeister",
+                                        "Amaretto", "Sake", "Bourbon", "Cognac", "Baijiu"};
 
-            string wordToGuess = wordBank[random.Next(0, wordBank.Length)];
+            string wordToGuess = words[random.Next(0, words.Length)];
             string wordToGuessUppercase = wordToGuess.ToUpper();
 
             StringBuilder displayToPlayer = new StringBuilder(wordToGuess.Length);
@@ -31,25 +33,40 @@ namespace Hangman
             int lives = 5, points = 0;
             bool won = false;
             int lettersRevealed = 0;
-
             string input;
             char guess;
 
+            Console.WriteLine("           +---+");
+            Console.WriteLine("           |   |");
+            Console.WriteLine("               |");
+            Console.WriteLine("               |");
+            Console.WriteLine("               |");
+            Console.WriteLine("               |");
+            Console.WriteLine("       ===========");
+            Console.WriteLine("");
+
+            Console.WriteLine("   Current Word: " + displayToPlayer.ToString());
+            Console.WriteLine("   Lives : " + lives);
+            Console.WriteLine("   Points : " + points);
+            Console.WriteLine("");
+            Console.WriteLine(".:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
+
             while (!won && lives > 0)
             {
-                Console.Write("Guess a letter: ");
+                Console.WriteLine("");
+                Console.Write("   Guess a letter: ");
 
                 input = Console.ReadLine().ToUpper();
                 guess = input[0];
 
                 if (correctGuesses.Contains(guess))
                 {
-                    Console.WriteLine("You've already tried '{0}', and it was correct!", guess);
+                    Console.WriteLine(" You've already tried '{0}', and it was correct!", guess);
                     continue;
                 }
                 else if (incorrectGuesses.Contains(guess))
                 {
-                    Console.WriteLine("You've already tried '{0}', and it was wrong!", guess);
+                    Console.WriteLine(" You've already tried '{0}', and it was wrong!", guess);
                     continue;
                 }
 
@@ -74,22 +91,135 @@ namespace Hangman
                 {
                     incorrectGuesses.Add(guess);
 
-                    Console.WriteLine("Nope, there's no '{0}' in it!", guess);
+                    Console.WriteLine(" Nope, there's no '{0}' in it!", guess);
                     lives--;
                     points = points - 10;
                 }
-                Console.WriteLine("*****************************************");
+                Console.Clear();
+                Console.WriteLine(".:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
                 Console.WriteLine("");
-                Console.WriteLine("Current Word: " + displayToPlayer.ToString());
-                Console.WriteLine("Lives : " + lives);
-                Console.WriteLine("Points : " + points);
+
+                switch (lives)
+                {
+                    case 5:
+                        Console.WriteLine("           +---+");
+                        Console.WriteLine("           |   |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("       ===========");
+                        Console.WriteLine("");
+                        break;
+
+                    case 4:
+                        Console.WriteLine("           +---+");
+                        Console.WriteLine("           |   |");
+                        Console.WriteLine("           O   |");
+                        Console.WriteLine("           |   |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("       ===========");
+                        Console.WriteLine("");
+                        break;
+
+                    case 3:
+                        Console.WriteLine("           +---+");
+                        Console.WriteLine("           |   |");
+                        Console.WriteLine("           O   |");
+                        Console.WriteLine("          /|   |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("       ===========");
+                        Console.WriteLine("");
+                        break;
+
+                    case 2:
+                        Console.WriteLine("           +---+");
+                        Console.WriteLine("           |   |");
+                        Console.WriteLine("           O   |");
+                        Console.WriteLine("          /|\\  |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("       ===========");
+                        Console.WriteLine("");
+                        break;
+
+                    case 1:
+                        Console.WriteLine("           +---+");
+                        Console.WriteLine("           |   |");
+                        Console.WriteLine("           O   |");
+                        Console.WriteLine("          /|\\  |");
+                        Console.WriteLine("          /    |");
+                        Console.WriteLine("               |");
+                        Console.WriteLine("       ===========");
+                        Console.WriteLine("");
+                        break;
+                }
+
+                Console.WriteLine("   Current Word: " + displayToPlayer.ToString());
+                Console.WriteLine("   Lives : " + lives);
+                Console.WriteLine("   Points : " + points);
                 Console.WriteLine("");
+                Console.WriteLine(".:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
             }
 
             if (won)
-                Console.WriteLine("You won!");
+            {
+                Console.Clear();
+                Console.WriteLine(".:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
+                Console.WriteLine(".:*~*:._.:*~*:.    You won! Shrek is Safe !!    .:*~*:._.:*~*:.");
+                Console.WriteLine(".:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
+                Console.WriteLine("");
+                Console.WriteLine("######################################################################################");
+                Console.WriteLine("#                                                                                    #");
+                Console.WriteLine("#                            ,.--------._                                            #");
+                Console.WriteLine("#                           /            ''.                                         #");
+                Console.WriteLine("#                         ,'                \\     |\"\\                /\\          /\\  #");
+                Console.WriteLine("#              /\" |     /                   \\    | __\"              ( \\        // )  #");
+                Console.WriteLine("#               \"_\"|    /           z#####z   \\  //                  \\ \\      // /   #");
+                Console.WriteLine("#                 \\  #####        ##------\".  \\//                     \\_\\||||//_/    #");
+                Console.WriteLine("#                  \\/-----\\     /          \".  \\                       \\/ _  _ \\     #");
+                Console.WriteLine("#                   \\|      \\   |   ,,--..       \\                    \\/|(O)(O)|     #");
+                Console.WriteLine("#                   | ,.--._ \\  (  | ##   \\)      \\                  \\/ |      |     #");
+                Console.WriteLine("#                   |(  ##  )/   \\ `-....-//       |///////////////_\\/  \\      /     #");
+                Console.WriteLine("#                     '--'.\"      \\                \\              //     |____|      #");
+                Console.WriteLine("#                  /'    /         ) --.            \\            ||     /      \\     #");
+                Console.WriteLine("#               ,..|     \\.________/    `-..         \\   \\       \\|     \\ 0  0 /     #");
+                Console.WriteLine("#            _,##/ |   ,/   /   \\           \\         \\   \\       U    / \\_//_/      #");
+                Console.WriteLine("#          :###.-  |  ,/   /     \\        /' \"\"\\      .\\        (     /              #");
+                Console.WriteLine("#         /####|   |   (.___________,---',/    |       |\\=._____|  |_/               #");
+                Console.WriteLine("#        /#####|   |     \\__|__|__|__|_,/             |####\\    |  ||                #");
+                Console.WriteLine("#       /######\\   \\      \\__________/                /#####|   \\  ||                #");
+                Console.WriteLine("#      /|#######`. `\\                                /#######\\   | ||                #");
+                Console.WriteLine("#     /++\\#########\\  \\                      _,'    _/#########\\ | ||                #");
+                Console.WriteLine("#    /++++|#########|  \\      .---..       ,/      ,'##########.\\|_||                #");
+                Console.WriteLine("#   //++++|#########\\.  \\.              ,-/      ,'########,+++++\\_\\                 #");
+                Console.WriteLine("#  /++++++|##########\\.   '._        _,/       ,'######,''++++++++\\                  #");
+                Console.WriteLine("# |+++++++|###########|       -----.\"        _'#######'++++++++++ +\\                 #");
+                Console.WriteLine("# |+++++++|############\\.     \\     //      /#######/++++++++++ +++\\                 #");
+                Console.WriteLine("######################################################################################");
+                Console.WriteLine("");
+            }
             else
-                Console.WriteLine("You lost! It was '{0}'", wordToGuess);
+            {
+                Console.Clear();
+                Console.WriteLine(".:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
+                Console.WriteLine("");
+                Console.WriteLine("           +---+");
+                Console.WriteLine("           |   |");
+                Console.WriteLine("           O   |");
+                Console.WriteLine("          /|\\  |");
+                Console.WriteLine("          / \\  |");
+                Console.WriteLine("               |");
+                Console.WriteLine("       ===========");
+                Console.WriteLine("");
+                Console.WriteLine("   You lost! The word was '{0}'", wordToGuess);
+                Console.WriteLine("");
+                Console.WriteLine("   Shrek is Dead =(");
+                Console.WriteLine("");
+                Console.WriteLine(".:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
+            }
 
             Console.Write("Press ENTER to exit...");
             Console.ReadLine();
