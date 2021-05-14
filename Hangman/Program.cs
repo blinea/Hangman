@@ -167,8 +167,7 @@ namespace Hangman
             if (won)
             {
                 Console.Clear();
-                Console.WriteLine("       " +
-                    "     .:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
+                Console.WriteLine("            .:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
                 Console.WriteLine("            .:*~*:._.:*~*:.    You won! Shrek is Safe !!    .:*~*:._.:*~*:.");
                 Console.WriteLine("            .:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.");
                 Console.WriteLine("");
